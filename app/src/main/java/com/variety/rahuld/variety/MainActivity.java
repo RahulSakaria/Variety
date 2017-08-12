@@ -3,7 +3,10 @@ package com.variety.rahuld.variety;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -25,6 +28,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +43,9 @@ public class MainActivity extends AppCompatActivity {
                 .defaultDisplayImageOptions(defaultOptions)
                 .build();
         ImageLoader.getInstance().init(config); // Do it on Application start
-
         new JSONTask().execute("https://public-api.wordpress.com/rest/v1.2/sites/43439658/posts/");
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
     }
 
     public class JSONTask extends AsyncTask<String,String,List<CardItem>> {
@@ -98,7 +103,28 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<CardItem> cardItems) {
             super.onPostExecute(cardItems);
-            CardAdapter adapter = new CardAdapter(cardItems,MainActivity.this);
+
+
+            CardAdapter adapter = new CardAdapter(getApplicationContext(),R.layout.cards,cardItems);
             recyclerView.setAdapter(adapter);
         }
-}}
+}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.refreshButton){
+            new JSONTask().execute("https://public-api.wordpress.com/rest/v1.2/sites/43439658/posts/");
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+
+
+    }
+
+}

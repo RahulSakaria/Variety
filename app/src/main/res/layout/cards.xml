@@ -3,29 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:clickable="true"
     android:foreground="?selectableItemBackground"
     android:orientation="vertical"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="3dp"
+    app:cardCornerRadius="20dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    app:cardElevation="20dp"
+
     app:contentPadding="4dp">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/relative_layout_cards">
+        android:id="@+id/relative_layout_cards"
+        >
 
         <FrameLayout
             android:id="@+id/frame_layout_cards"
             android:layout_width="match_parent"
-            android:layout_height="160dp">
+            android:layout_height="160dp"
+            android:layout_margin="4dp">
 
             <ImageView
                 android:id="@+id/card_image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"/>
 
             <ProgressBar
                 android:id="@+id/progress_bar"
@@ -37,6 +45,8 @@
         <TextView
             android:id="@+id/post_title"
             android:layout_width="wrap_content"
+            android:padding="4dp"
+
             android:layout_height="wrap_content"
             android:layout_below="@id/frame_layout_cards"
             android:text="Title"
@@ -45,6 +55,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Author"
+
+            android:padding="4dp"
             android:layout_below="@id/post_title"
             android:id="@+id/post_author"/>
     </RelativeLayout>

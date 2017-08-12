@@ -26,10 +26,13 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     private ProgressBar progressBar;
     private List<CardItem> cardItems;
     private Context context;
-
-    public CardAdapter(List<CardItem> listItems, Context context) {
-        this.cardItems = listItems;
+    private LayoutInflater inflater;
+    private int resource;
+    public CardAdapter(Context context,int resource,List<CardItem> objects) {
         this.context = context;
+        this.resource = resource;
+        cardItems = objects;
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
