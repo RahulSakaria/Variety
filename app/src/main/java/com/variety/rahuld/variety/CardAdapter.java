@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,14 +72,17 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
                 progressBar.setVisibility(View.GONE);
             }
         });
-        holder.postTitle.setText(cardItem.getTitle());
+        holder.postTitle.setText(Html.fromHtml(cardItem.getTitle()));
         holder.postAuthor.setText(cardItem.getAuthorName());
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ContentActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
+                intent.putExtra("title",cardItem.getTitle());
+                intent.putExtra("author",cardItem.getAuthorName());
+                intent.putExtra("image",cardItem.getImage());
+                intent.putExtra("description",cardItem.getContent());
                 context.startActivity(intent);
                 }
         });
