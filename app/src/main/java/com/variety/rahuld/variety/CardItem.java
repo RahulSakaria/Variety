@@ -9,6 +9,12 @@ public class CardItem {
     public String title;
     public String date;
 
+
+
+    public String content;
+
+    public String authorName;
+
     public String getImage() {
         return image;
     }
@@ -32,4 +38,22 @@ public class CardItem {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+
 }

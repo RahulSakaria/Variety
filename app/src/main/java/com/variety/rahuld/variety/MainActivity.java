@@ -73,9 +73,14 @@ public class MainActivity extends AppCompatActivity {
                 for(int i=0;i<parentArray.length();i++){
                     JSONObject childObject = parentArray.getJSONObject(i);
                     CardItem cardItem = new CardItem();
+                    JSONObject author = childObject.getJSONObject("author");
+                    cardItem.setAuthorName(author.getString("name"));
                     cardItem.setImage(childObject.getString("featured_image"));
                     cardItem.setTitle(childObject.getString("title"));
                     cardItem.setDate(childObject.getString("date"));
+                    cardItem.setContent(childObject.getString("content"));
+
+
                     itemList.add(cardItem);
                 }
                 return itemList;

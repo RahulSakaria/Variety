@@ -1,6 +1,8 @@
 package com.variety.rahuld.variety;
 
+import android.content.ClipData;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,6 +27,7 @@ import java.util.List;
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     private ProgressBar progressBar;
     private List<CardItem> cardItems;
+
     private Context context;
     private LayoutInflater inflater;
     private int resource;
@@ -43,8 +46,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(CardAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(CardAdapter.ViewHolder holder, final int position) {
         final CardItem cardItem = cardItems.get(position);
+
 
         ImageLoader.getInstance().displayImage(cardItems.get(position).getImage(), holder.postImage, new ImageLoadingListener() {
             @Override
@@ -68,7 +72,17 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             }
         });
         holder.postTitle.setText(cardItem.getTitle());
-        holder.postAuthor.setText(cardItem.getDate());
+        holder.postAuthor.setText(cardItem.getAuthorName());
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ContentActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                context.startActivity(intent);
+                }
+        });
+        holder.currentItem = cardItems.get(position);
     }
 
     @Override
@@ -83,6 +97,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         public TextView postAuthor;
         public RelativeLayout relativeLayout;
         public FrameLayout frameLayout;
+        public View view;
+        public CardItem currentItem;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -92,6 +108,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             postTitle = (TextView) itemView.findViewById(R.id.post_title);
             postAuthor = (TextView) itemView.findViewById(R.id.post_author);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progress_bar);
+            view = itemView;
+
 
 
 

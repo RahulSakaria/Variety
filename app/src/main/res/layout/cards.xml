@@ -4,24 +4,23 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="2dp"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    android:layout_marginTop="2dp"
     android:clickable="true"
     android:foreground="?selectableItemBackground"
     android:orientation="vertical"
     app:cardCornerRadius="20dp"
-    android:layout_marginTop="2dp"
-    android:layout_marginBottom="2dp"
-    android:layout_marginLeft="4dp"
-    android:layout_marginRight="4dp"
     app:cardElevation="20dp"
 
     app:contentPadding="4dp">
 
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/relative_layout_cards"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <FrameLayout
             android:id="@+id/frame_layout_cards"
@@ -33,7 +32,7 @@
                 android:id="@+id/card_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY"/>
+                android:scaleType="fitXY" />
 
             <ProgressBar
                 android:id="@+id/progress_bar"
@@ -45,20 +44,21 @@
         <TextView
             android:id="@+id/post_title"
             android:layout_width="wrap_content"
-            android:padding="4dp"
-
             android:layout_height="wrap_content"
+
             android:layout_below="@id/frame_layout_cards"
+            android:padding="4dp"
             android:text="Title"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
         <TextView
+            android:id="@+id/post_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Author"
 
-            android:padding="4dp"
             android:layout_below="@id/post_title"
-            android:id="@+id/post_author"/>
+            android:padding="4dp"
+            android:text="Author" />
     </RelativeLayout>
 
 
