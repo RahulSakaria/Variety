@@ -1,10 +1,11 @@
 package com.variety.rahuld.variety;
 
 import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -19,9 +20,12 @@ public class ContentActivity extends AppCompatActivity {
     TextView description;
     ImageView contentImage;
     ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_content);
 
         title = (TextView) findViewById(R.id.content_title);
@@ -37,9 +41,9 @@ public class ContentActivity extends AppCompatActivity {
         String descriptions = bundle.getString("description");
         String image = bundle.getString("image");
         title.setText(Html.fromHtml(titles));
-        author.setText(authors);
+        author.setText("-" + authors);
         description.setText(Html.fromHtml(descriptions).toString());
-        ImageLoader.getInstance().displayImage(image,contentImage, new ImageLoadingListener() {
+        ImageLoader.getInstance().displayImage(image, contentImage, new ImageLoadingListener() {
             @Override
             public void onLoadingStarted(String imageUri, View view) {
                 progressBar.setVisibility(View.VISIBLE);

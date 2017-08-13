@@ -33,7 +33,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/content_frame_layout"
         android:text="Title"
+        android:textColor="#ffffff"
         android:id="@+id/content_title"
+        android:paddingTop="4dp"
+        android:paddingRight="4dp"
+        android:paddingLeft="4dp"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
     <TextView
@@ -41,12 +45,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/content_title"
         android:text="Author"
+        android:paddingBottom="4dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
         android:id="@+id/content_author"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Description"
+        android:padding="4dp"
         android:paddingTop="8dp"
         android:layout_below="@id/content_author"
         android:id="@+id/content_description"/>
